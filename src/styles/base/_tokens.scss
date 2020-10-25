@@ -1,0 +1,42 @@
+//Margin-Top
+.gap-top-300 {
+    margin-top: $scale1;
+}
+
+.gap-top-400 {
+    margin-top: $scale2;
+}
+
+.gap-top-500 {
+    margin-top: $scale3;
+}
+
+.gap-top-600 {
+    margin-top: $scale4;
+}
+
+//Color
+.color-secondary {
+    color: var(--color-secondary);
+}
+
+.color-neutral {
+    color: var(--color-neutral);
+}
+
+//Background
+.bg-primary {
+    background-color: var(--color-primary);
+}
+
+.bg-secondary {
+    background-color: var(--color-secondary);
+}
+
+.bg-tertiary {
+    background-color: var(--color-tertiary);
+}
+
+.bg-neutral {
+    background-color: var(--color-neutral);
+}

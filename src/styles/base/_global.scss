@@ -1,0 +1,51 @@
+body {
+    padding-top: $scale4;
+    padding-bottom: $scale4;
+    line-height: 1.5;
+    background-color: var(--color-light);
+    color: var(--color-dark);
+    font-size: $scale2;
+    font-family: $font-primary;
+    font-weight: $weight-medium;
+    letter-spacing: 1.5px;
+    overflow-x: hidden;
+}
+
+h1, 
+h2, 
+h3 {
+    max-width: $measure-compact;
+    line-height: 1.1;
+    font-family: $font-secondary;
+    font-weight: $weight-bold;
+}
+
+h1 {
+    font-size: $scale5;
+    color: var(--color-primary);
+    text-decoration: underline;
+}
+
+h2 {
+    font-size: $scale4;
+}
+
+h3 {
+    font-size: $scale3;
+}
+
+p {
+    max-width: $measure-long;
+}
+
+a {
+    color: currentColor;
+}
+
+hr {
+    border: solid;
+}
+
+dl {
+    padding: 3px;
+}

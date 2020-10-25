@@ -1,0 +1,32 @@
+:root {
+    //Color
+    --color-primary: #9c88ff;
+    --color-secondary: rgb(255, 46, 46);
+    --color-tertiary: rgb(6, 192, 6);
+    --color-dark: #000;
+    --color-light: #ebe8f8;
+    --color-neutral: #fff;
+
+    --button-width: 7rem;
+}
+
+//Measure
+$measure-compact: 30ch;
+$measure-long: 65ch;
+
+//Scale
+$base-scale: 1rem;
+
+$scale1: 0.8 * $base-scale;
+$scale2: $base-scale;
+$scale3: 1.66 * $base-scale;
+$scale4: 2.4 * $base-scale;
+$scale5: 3.8 * $base-scale;
+
+//Weight 
+$weight-medium: 400;
+$weight-bold: 800;
+
+//Font
+$font-primary: verdana, 'Times New Roman', Times, serif;
+$font-secondary: monospace;
