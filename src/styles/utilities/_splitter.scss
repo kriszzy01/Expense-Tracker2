@@ -1,0 +1,7 @@
+.splitter {
+    display: flex;
+
+    > :first-child {
+        margin-right: auto;
+    }
+}

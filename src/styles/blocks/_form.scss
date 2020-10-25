@@ -1,0 +1,10 @@
+.form {
+    display: flex;
+    flex-direction: column;
+
+    input {
+        width: 100%;
+        border: none;
+        outline-color: var(--color-primary);
+    }
+}

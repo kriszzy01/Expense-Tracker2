@@ -1,0 +1,12 @@
+.toggle-button {
+    position: relative;
+    transition: background 0.5s ease-in-out;
+    min-width: 80px;
+    margin-bottom: 5px;
+    --radius: 15px;
+    color: var(--color-light);
+
+    &:hover {
+        color: var(--color-neutral);
+    }
+}
