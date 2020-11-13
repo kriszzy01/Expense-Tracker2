@@ -5,7 +5,7 @@ import { SubHeading } from "./SubHeading";
 import { currency } from "../utils/currency";
 
 export const TransactionBalance = () => {
-    const allTransactions = useSelector(selectAllTransactions);
+    const allTransactions = useSelector(selectAllTransactions) as Array<{id: string, amount: number, title: string}>;
 
     const balance = allTransactions.reduce((prev, next) => prev + next.amount, 0);
 

@@ -2,13 +2,14 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { selectAllTransactions, removeTransaction } from "../redux/slices/TransactionSlice";
 import { currency } from "../utils/currency";
+import { AppDispatch } from "../redux/store";
 
-export const TransactionHistory = () => {
-    const allTransactions = useSelector(selectAllTransactions);
+export const TransactionHistory: React.FC = () => {
+    const allTransactions = useSelector(selectAllTransactions) as Array<{id: string, amount: number, title: string}>;
 
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<AppDispatch>();
 
-    const handleRemoveTransaction = id => dispatch(removeTransaction(id))
+    const handleRemoveTransaction = (id: string) => dispatch(removeTransaction(id))
 
     const listItem = allTransactions.map(transaction => {
         const { title, amount, id } = transaction;

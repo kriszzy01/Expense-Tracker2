@@ -1,7 +1,18 @@
 import React, { forwardRef } from "react";
 import { TransactionToggle } from "./TransactionToggle";
 
-export const FormInput = forwardRef(({ type = "text", id, value, onInputChange, label, placeholder }, ref) => {
+interface FormInputProps {
+    type?: string;
+    id: string;
+    value: string;
+    label: string;
+    placeholder: string;
+    onInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+type Ref = HTMLInputElement;
+
+export const FormInput = forwardRef<Ref, FormInputProps>(({ type = "text", id, value, onInputChange, label, placeholder }, ref) => {
 
     return (
         <div>

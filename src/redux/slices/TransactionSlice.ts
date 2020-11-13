@@ -1,4 +1,5 @@
-import { createSlice, createEntityAdapter } from "@reduxjs/toolkit";
+import { createSlice, createEntityAdapter, PayloadAction } from "@reduxjs/toolkit";
+import { RootState } from "../store";
 
 const transactionAdapter = createEntityAdapter();
 
@@ -11,10 +12,10 @@ const transactionSlice = createSlice({
     initialState,
     reducers: {
         addTransaction: {
-            reducer(state, payload) {
+            reducer(state, payload: PayloadAction<{id: string; amount: number; title: string}>) {
                 transactionAdapter.addOne(state, payload)
             },
-            prepare(title, amount) {
+            prepare(title: string, amount: number) {
                 return {
                     payload: {
                         id: `${title}${new Date().getSeconds()}`,
@@ -25,32 +26,31 @@ const transactionSlice = createSlice({
             }
         },
         removeTransaction: {
-            reducer(state, payload) {
+            reducer(state, payload: PayloadAction<string>) {
                 transactionAdapter.removeOne(state, payload)
             },
             prepare(id) {
                 return {
                     payload: id
                 }
-            } 
-        },
-        toggleTransaction: {
-            reducer(state) {
-                state.isIncome = !state.isIncome;
             }
+        },
+        toggleTransaction: (state) => {
+            state.isIncome = !state.isIncome;
         }
     }
 });
 
 export default transactionSlice.reducer; //Transaction Reducer
 export const {
-    addTransaction, 
-    removeTransaction, 
+    addTransaction,
+    removeTransaction,
     toggleTransaction
 } = transactionSlice.actions; //Actions
 
-export const isIncome = state => state.transaction.isIncome; 
+//export const isIncome = state => state.transaction.isIncome;
+
 export const {
     selectAll: selectAllTransactions,
     selectById: selectTransactionById
-} = transactionAdapter.getSelectors(state => state.transaction);
+} = transactionAdapter.getSelectors<RootState>(state => state.transaction);

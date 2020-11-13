@@ -1,12 +1,12 @@
 import React from "react";
-import { isIncome as isInc} from "../redux/slices/TransactionSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { toggleTransaction } from "../redux/slices/TransactionSlice";
+import { RootState, AppDispatch } from "../redux/store";
 
-export const TransactionToggle = () => {
-    const isIncome = useSelector(isInc);
+export const TransactionToggle: React.FC = () => {
+    const isIncome = useSelector((state: RootState) => state.transaction.isIncome);
 
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<AppDispatch>();
 
     const handleToggle = () => dispatch(toggleTransaction());
 

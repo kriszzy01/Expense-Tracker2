@@ -1,22 +1,21 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { FormInput } from "./FormInput";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addTransaction } from "../redux/slices/TransactionSlice";
-import { useSelector } from "react-redux";
-import { isIncome as isInc } from "../redux/slices/TransactionSlice";
+import { RootState, AppDispatch } from "../redux/store";
 
-export const TransactionForm = () => {
+export const TransactionForm: React.FC = () => {
     const [title, setTitle] = useState("");
     const [amount, setAmount] = useState("");
     const [notNumber, setNotNumber] = useState(false);
 
-    const isIncome = useSelector(isInc);
+    const isIncome = useSelector((state: RootState) => state.transaction.isIncome);
 
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<AppDispatch>();
 
-    const onTitleChange = event => setTitle(event.target.value);
+    const onTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => setTitle(event.target.value);
 
-    const onAmountChange = event => {
+    const onAmountChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const numberRegex = /^[0-9]*$/gm;
 
         if (numberRegex.test(event.target.value)) {
@@ -27,7 +26,9 @@ export const TransactionForm = () => {
         }
     };
 
-    const handleSubmit = event => {
+    const inputRef = React.createRef<HTMLInputElement>();
+
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
         const transactionAmount = isIncome ? Number(`${amount}`) : Number(`-${amount}`);
@@ -39,11 +40,14 @@ export const TransactionForm = () => {
         setAmount("");
         setTitle("");
 
-        inputRef.current.focus();
+        if (inputRef && inputRef.current) {
+            inputRef.current.focus();
+        }
+
         setNotNumber(false);
     };
 
-    const inputRef = useRef(null);
+
 
     return (
         <form onSubmit={handleSubmit} className="form | flow">
@@ -63,11 +67,11 @@ export const TransactionForm = () => {
                 label="Amount"
                 placeholder="Enter Amount..."
             />
-            
+
             <button type="submit" className="bg-primary">Add Transaction</button>
             <p className="instructions">
                 {!notNumber ?
-                    "Toggle Transaction Type by clicking Income-Expense Button":
+                    "Toggle Transaction Type by clicking Income-Expense Button" :
                     "Amount must be a Number"
                 }
             </p>
